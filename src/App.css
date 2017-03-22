@@ -1,0 +1,60 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: #222;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  text-align: center;
+}
+
+input{
+  border: none;
+  border-bottom: 1px dotted black;
+  margin-left: 0.5em;
+  font-size: 1em;
+  outline: none;
+}
+
+select{
+  width:50%;
+  height:20%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+}
+
+.wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.temp-wrapper {
+  text-align: center;
+  position: relative;
+}
+
+.temp {
+  font-size: 64px;
+  margin-top: 20px;
+  display: block;
+}
+
+.temp-symbol {
+  position: absolute;
+  top: 13px;
+  margin-left: 4px;
+}
+
+.temp-date {
+  position: absolute;
+  bottom: -1em;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(0, 0, 0, 0.5);
+}
