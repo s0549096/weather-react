@@ -10,9 +10,9 @@ class Menu extends Component {
   render() {
   return (
     <div>
-      <DropdownButton bsSize="large" title="Select location" id="dropdown-size-large">
-        <MenuItem title="Berlin" eventKey={1} onSelect={this.onSelectAlert}>{this.props.l1}</MenuItem>
-        <MenuItem title="London">{this.props.l2}</MenuItem>
+      <DropdownButton bsSize="large" title="Select location (Test)" id="dropdown-size-large" onSelect={this.onSelectAlert}>
+        <MenuItem eventKey={1} >{this.props.l1}</MenuItem>
+        <MenuItem eventKey={2} >{this.props.l2}</MenuItem>
        </DropdownButton>
     </div>
 

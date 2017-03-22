@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import xhr from 'xhr';
-//import Menu from './Menu.js';
+import Menu from './Menu.js';
 
 class App extends Component {
 
@@ -97,9 +97,7 @@ class App extends Component {
             <input placeholder={"City, Country"} type="text"
               value={this.state.location} onChange={this.changeLocation}/>
             </label>
-        </form>
-
-        <Menu/>*/}
+        </form>*/}
       <form>
       <select value={this.state.location} onChange={this.changeLocation}>
         <option defaultValue value="2950157">Berlin</option>
@@ -107,6 +105,7 @@ class App extends Component {
         <option value="6455259">Paris</option>
       </select>
       </form>
+
       <p className="temp-wrapper">
           <span className="temp">{tempMin}</span>
           <span className="temp">{tempMax}</span>
@@ -115,6 +114,9 @@ class App extends Component {
           <span className="temp">{windDir}</span>
           {/*<span className="temp-symbol">C</span>*/}
       </p>
+      {/*Ideally it should work with this..*/}
+      <Menu l1="Berlin" l2="New York"/>
+
      </div>
     );
   }
