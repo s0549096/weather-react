@@ -7,6 +7,7 @@ class App extends Component {
 
   state = {
       location: 2950157,
+      childText: "Click me!",
       data: {},
       dates: [],
       temps: [],
@@ -20,7 +21,7 @@ class App extends Component {
       //evt.preventDefault();
       var location = this.state.location;
       var urlPrefix = 'http://api.openweathermap.org/data/2.5/forecast?id=';
-      var urlSuffix = '&APPID=9244945f673887f74fded07b1857e368&units=metric';
+      var urlSuffix = '&APPID=6508cdac65a3c15a6cc07bcb91445a4f&units=metric';
       var url = urlPrefix + location + urlSuffix;
 
       var self = this;
@@ -56,12 +57,23 @@ class App extends Component {
     this.setState({
         location: evt.target.value
     }) ;
-    this.fetchData();
+
   };
+
+  handleChildClick = (event) => {
+     alert("The Child button text is: " + this.state.childText);
+     alert("The Child HTML is: " + event.target.outerHTML);
+  }
 
   componentDidMount() {
     //setInterval(this.fetchData, parseInt(this.props.interval));
     this.fetchData();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.location !== this.state.location) {
+    this.fetchData();
+    }
   }
 
   calcWind = (windDir) => {
@@ -115,7 +127,7 @@ class App extends Component {
           {/*<span className="temp-symbol">C</span>*/}
       </p>
       {/*Ideally it should work with this..*/}
-      <Menu l1="Berlin" l2="New York"/>
+      <Menu onClick={this.handleChildClick} text={this.state.childText}/>
 
      </div>
     );
