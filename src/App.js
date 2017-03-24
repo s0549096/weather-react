@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import xhr from 'xhr';
-import Menu from './Menu.js';
+//import Menu from './Menu.js';
 
 class App extends Component {
 
@@ -21,14 +21,13 @@ class App extends Component {
       //evt.preventDefault();
       var location = this.state.location;
       var urlPrefix = 'http://api.openweathermap.org/data/2.5/forecast?id=';
-      var urlSuffix = '&APPID=6508cdac65a3c15a6cc07bcb91445a4f&units=metric';
+      var urlSuffix = '&APPID=9244945f673887f74fded07b1857e368&units=metric';
       var url = urlPrefix + location + urlSuffix;
 
       var self = this;
 
       xhr({
           url: url,
-          //interval: 60000000
       }, function (err, data) {
             var body = JSON.parse(data.body);
             var list = body.list;
@@ -66,7 +65,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    //setInterval(this.fetchData, parseInt(this.props.interval));
     this.fetchData();
   }
 
@@ -74,6 +72,9 @@ class App extends Component {
     if(prevState.location !== this.state.location) {
     this.fetchData();
     }
+    // else{
+    //   setInterval(this.fetchData, 100 * 600);
+    // }
   }
 
   calcWind = (windDir) => {
@@ -89,45 +90,51 @@ class App extends Component {
   }
 
   render() {
-    var current, tempMin, tempMax, weatherIcon, description, windDir;
+    var totalLength, city, current, weatherIcon, tempMin, tempMax, description, windDir, windSpeed, clouds, pressure;
 
     if(this.state.data.list) {
+        totalLength = Object.keys(this.state.data.list).length;
+        city = this.state.data.city.name;
+
         current = this.state.data.list[0];
-        tempMin = current.main.temp_min;
-        tempMax = current.main.temp_max;
         weatherIcon = "http://openweathermap.org/img/w/" +
         current.weather[0].icon + ".png";
+        tempMin = Math.round(current.main.temp_min);
+        tempMax = Math.round(current.main.temp_max);
         description = current.weather[0].description;
         windDir = this.calcWind(current.wind.deg);
+        windSpeed = current.wind.speed;
+        clouds = current.clouds.all;
+        pressure = current.main.pressure;
     }
 
     return (
-    <div>
-      <h1>Weather</h1>
-        {/*<form onSubmit={this.fetchData}>
-            <label>I want to know the weather for
-            <input placeholder={"City, Country"} type="text"
-              value={this.state.location} onChange={this.changeLocation}/>
-            </label>
-        </form>*/}
+    <div className="wrapper">
+      <h1>{city}</h1>
+
       <form>
       <select value={this.state.location} onChange={this.changeLocation}>
-        <option defaultValue value="2950157">Berlin</option>
+        <option value="2950157">Berlin</option>
         <option value="5128638">New York</option>
         <option value="6455259">Paris</option>
       </select>
       </form>
 
-      <p className="temp-wrapper">
-          <span className="temp">{tempMin}</span>
-          <span className="temp">{tempMax}</span>
-          <img src={weatherIcon} alt="icon"/>
+      <div className="data-wrapper">
+          <p className="tempMin"><span className="tempMax">{tempMax}&deg;&nbsp;</span>{tempMin}&deg;</p>
+          {/*<img src={weatherIcon} alt="icon"/>*/}
           <span className="temp">{description}</span>
           <span className="temp">{windDir}</span>
-          {/*<span className="temp-symbol">C</span>*/}
-      </p>
-      {/*Ideally it should work with this..*/}
+          <span className="temp">{windSpeed} m/s</span>
+          <span className="temp">{clouds} %</span>
+          <span className="temp">{pressure} hpa</span>
+      </div>
+      <h2>Forecast</h2>
+      <p>sjsjskjskjsckjsckjkcsjcsjkcskjkcjskcjkcjkscjskjcsckjkcjskjsckjcsskjc</p>
+      
+      {/*Ideally it should work with this..
       <Menu onClick={this.handleChildClick} text={this.state.childText}/>
+      <Menu l1="Berlin" id1="2950157" l2="New York" id2="5128638" onSelect={this.changeLocation}/>*/}
 
      </div>
     );

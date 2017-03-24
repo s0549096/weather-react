@@ -1,23 +1,26 @@
-body {
+.wrapper {
+  border-radius: 25px;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
-  color: #222;
+  color: white;
+  width: 60%;
+  position: relative;
+  margin: auto;
+  background-color: #DAE2F8;
+  background: -webkit-linear-gradient(#DAE2F8 , #D6A4A4);
+  background: linear-gradient(#DAE2F8 , #D6A4A4);
 }
 
 h1 {
   text-align: center;
 }
 
-form {
-  text-align: center;
+h2 {
+  border-bottom: 1px solid white;
 }
 
-input{
-  border: none;
-  border-bottom: 1px dotted black;
-  margin-left: 0.5em;
-  font-size: 1em;
-  outline: none;
+form {
+  text-align: center;
 }
 
 select{
@@ -29,32 +32,24 @@ select{
   background-color: #f1f1f1;
 }
 
-.wrapper {
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.temp-wrapper {
+.wrapper .data-wrapper {
   text-align: center;
   position: relative;
 }
 
-.temp {
+.tempMin {
   font-size: 64px;
   margin-top: 20px;
   display: block;
 }
 
-.temp-symbol {
-  position: absolute;
-  top: 13px;
-  margin-left: 4px;
+.tempMax {
+  font-size: 150%;
+  color: white;
 }
 
-.temp-date {
-  position: absolute;
-  bottom: -1em;
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgba(0, 0, 0, 0.5);
+.temp {
+  font-size: 44px;
+  margin-top: 20px;
+  display: block;
 }
